@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gowtham Mani R — AI · Data · ML · BI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Milk White & Dark Blue-Grey Palette */
+  --bg:         #F8F9FB;
+  --surface:    #EEF1F6;
+  --surface-2:  #E4E9F1;
+  --border:     #D4DBE8;
+  --text:       #1A2540;
+  --text-muted: #3D4F6E;
+  --accent:     #2C4A8A;
+  --accent-dk:  #1E3570;
+  --steel:      #5A6E8C;
+  --terminal:   #151E30;
+  --radius:     14px;
+  --radius-sm:  8px;
+  box-sizing: border-box;
+}
+*, *::before, *::after { box-sizing: inherit; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: clamp(14px, 1.5vw, 15px);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: clamp(10px, 2vw, 16px) clamp(16px, 5vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(248,249,251,0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--accent);
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  gap: clamp(12px, 2.5vw, 28px);
+  list-style: none;
+  flex-wrap: nowrap;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: clamp(11px, 1.3vw, 13px);
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* hamburger for mobile */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(90px, 14vh, 120px) clamp(20px, 6vw, 60px) clamp(48px, 8vh, 80px);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #F8F9FB 0%, #EEF1F6 60%, #E4E9F1 100%);
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform;
+}
+.orb-1 { width: clamp(200px, 40vw, 480px); height: clamp(200px, 40vw, 480px); background: rgba(44,74,138,0.09); top: -80px; right: -80px; }
+.orb-2 { width: clamp(160px, 30vw, 340px); height: clamp(160px, 30vw, 340px); background: rgba(90,110,140,0.07); bottom: 40px; left: -60px; }
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: min(720px, 100%);
+  width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(44,74,138,0.08);
+  border: 1px solid rgba(44,74,138,0.22);
+  color: var(--accent);
+  font-size: clamp(11px, 1.2vw, 12px);
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: clamp(16px, 3vh, 24px);
+}
+.badge-dot {
+  width: 6px; height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.hero h1 {
+  font-size: clamp(30px, 7vw, 64px);
+  font-weight: 700;
+  letter-spacing: clamp(-1px, -0.03em, -1.5px);
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: clamp(12px, 2vh, 18px);
+}
+
+.role-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(6px, 1vw, 8px);
+  margin-bottom: clamp(14px, 2.5vh, 20px);
+}
+.role-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: clamp(10px, 1.1vw, 12px);
+  font-weight: 600;
+  padding: clamp(3px, 0.5vh, 5px) clamp(9px, 1.5vw, 13px);
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.role-pill.primary {
+  color: var(--accent);
+  background: rgba(44,74,138,0.10);
+  border: 1px solid rgba(44,74,138,0.22);
+}
+.role-pill.secondary {
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.hero-desc {
+  font-size: clamp(14px, 1.7vw, 17px);
+  color: var(--text-muted);
+  max-width: min(520px, 100%);
+  line-height: 1.65;
+  margin-bottom: clamp(24px, 4vh, 36px);
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  gap: clamp(8px, 1.5vw, 12px);
+  flex-wrap: wrap;
+  margin-bottom: clamp(36px, 6vh, 52px);
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: clamp(10px, 1.5vh, 13px) clamp(20px, 3vw, 28px);
+  border-radius: 10px;
+  font-size: clamp(13px, 1.3vw, 14px);
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s, transform 0.15s;
+  touch-action: manipulation;
+}
+.btn-primary:hover { background: var(--accent-dk); transform: translateY(-1px); }
+.btn-ghost {
+  background: #fff;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: clamp(10px, 1.5vh, 13px) clamp(20px, 3vw, 28px);
+  border-radius: 10px;
+  font-size: clamp(13px, 1.3vw, 14px);
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s, border-color 0.2s;
+  touch-action: manipulation;
+}
+.btn-ghost:hover { background: var(--surface); border-color: var(--steel); }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  max-width: min(600px, 100%);
+}
+.stat-item {
+  padding: clamp(12px, 2vh, 18px) clamp(8px, 1.5vw, 16px);
+  background: #fff;
+  text-align: center;
+}
+.stat-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-lbl {
+  font-size: clamp(9px, 1vw, 11px);
+  color: var(--steel);
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+/* ── LAYOUT WRAPPER ── */
+.content-wrap {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 5vw, 48px);
+}
+
+/* ── SECTIONS ── */
+section {
+  padding: clamp(48px, 8vh, 88px) clamp(16px, 5vw, 48px);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.section-label {
+  font-size: clamp(10px, 1.1vw, 12px);
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: clamp(22px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  margin-bottom: clamp(24px, 4vh, 40px);
+}
+
+/* ── EXPERIENCE ── */
+.exp-list { display: flex; flex-direction: column; }
+.exp-item {
+  padding: clamp(20px, 3.5vh, 30px) 0;
+  border-bottom: 1px solid var(--border);
+}
+.exp-item:first-child { border-top: 1px solid var(--border); }
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.exp-left { flex: 1; min-width: 0; }
+.exp-right { text-align: right; flex-shrink: 0; }
+.exp-company {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(15px, 2vw, 17px);
+  font-weight: 600;
+  color: var(--text);
+}
+.exp-role {
+  font-size: clamp(12px, 1.3vw, 13px);
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: 3px;
+}
+.exp-date {
+  font-size: clamp(11px, 1.2vw, 12px);
+  color: var(--steel);
+  white-space: nowrap;
+  font-weight: 400;
+}
+.exp-location {
+  font-size: clamp(10px, 1.1vw, 11px);
+  color: var(--steel);
+  margin-top: 3px;
+  opacity: 0.75;
+}
+.exp-desc {
+  font-size: clamp(13px, 1.4vw, 14px);
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.exp-tag {
+  display: inline-block;
+  font-size: clamp(10px, 1.1vw, 11px);
+  color: var(--steel);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* ── BADGES ── */
+.badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: clamp(10px, 1.1vw, 11px);
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.badge-done  { background: rgba(44,74,138,0.08); border: 1px solid rgba(44,74,138,0.22); color: var(--accent); }
+.badge-stipend { background: rgba(90,110,140,0.10); border: 1px solid rgba(90,110,140,0.28); color: var(--steel); }
+.badge-goi   { background: rgba(180,130,0,0.10); border: 1px solid rgba(180,130,0,0.30); color: #8B6400; }
+
+/* ── PROJECTS ── */
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+.proj-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(18px, 2.5vw, 24px);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.proj-card:hover {
+  border-color: rgba(44,74,138,0.35);
+  box-shadow: 0 4px 20px rgba(44,74,138,0.08);
+}
+.proj-card.featured {
+  border-color: rgba(44,74,138,0.30);
+  background: rgba(44,74,138,0.03);
+}
+.proj-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 10px; }
+.proj-icon-wrap {
+  width: clamp(34px, 5vw, 40px);
+  height: clamp(34px, 5vw, 40px);
+  border-radius: 10px;
+  background: rgba(44,74,138,0.10);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(15px, 2.5vw, 18px);
+  flex-shrink: 0;
+}
+.proj-featured-badge {
+  font-size: clamp(10px, 1.1vw, 11px);
+  color: var(--accent);
+  background: rgba(44,74,138,0.10);
+  border: 1px solid rgba(44,74,138,0.22);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.proj-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.proj-desc {
+  font-size: clamp(12px, 1.3vw, 13px);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-size: clamp(10px, 1.1vw, 11px);
+  color: var(--accent);
+  background: rgba(44,74,138,0.08);
+  border: 1px solid rgba(44,74,138,0.18);
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* ── SKILLS ── */
+.skills-grid { display: flex; flex-direction: column; gap: clamp(16px, 3vh, 24px); }
+.skill-group-name {
+  font-size: clamp(10px, 1.1vw, 12px);
+  color: var(--steel);
+  margin-bottom: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.skill-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: clamp(12px, 1.3vw, 13px);
+  color: var(--text-muted);
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: clamp(5px, 0.8vh, 7px) clamp(10px, 1.5vw, 14px);
+  border-radius: 8px;
+  font-weight: 400;
+}
+.chip.hi {
+  color: var(--accent);
+  background: rgba(44,74,138,0.07);
+  border-color: rgba(44,74,138,0.20);
+  font-weight: 500;
+}
+
+/* ── CERTS ── */
+.cert-row { display: flex; flex-direction: column; gap: 10px; }
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: clamp(12px, 2vh, 16px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.cert-icon {
+  width: clamp(32px, 5vw, 38px);
+  height: clamp(32px, 5vw, 38px);
+  background: rgba(44,74,138,0.10);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(15px, 2vw, 18px);
+  flex-shrink: 0;
+}
+.cert-name { font-size: clamp(13px, 1.4vw, 14px); font-weight: 500; color: var(--text); }
+.cert-org { font-size: clamp(11px, 1.2vw, 12px); color: var(--steel); margin-top: 2px; }
+
+/* ── LANGUAGES ── */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.lang-card {
+  border-radius: 14px;
+  padding: clamp(16px, 2.5vh, 22px) clamp(14px, 2vw, 20px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.lang-card.primary { background: rgba(44,74,138,0.06); border: 1px solid rgba(44,74,138,0.18); }
+.lang-card.secondary { background: var(--surface); border: 1px solid var(--border); }
+.lang-flag { font-size: clamp(22px, 4vw, 28px); flex-shrink: 0; }
+.lang-name { font-family:'Space Grotesk',sans-serif; font-size: clamp(14px, 1.8vw, 16px); font-weight: 600; color: var(--text); }
+.lang-level { font-size: clamp(11px, 1.2vw, 12px); color: var(--steel); margin-top: 3px; }
+
+/* ── HACKATHON CARDS ── */
+.hack-list { display: flex; flex-direction: column; gap: 12px; }
+.hack-card-hi {
+  background: rgba(44,74,138,0.05);
+  border: 1px solid rgba(44,74,138,0.18);
+  border-radius: 14px;
+  padding: clamp(16px, 2.5vw, 20px);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.hack-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(16px, 2.5vw, 20px);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.hack-icon { font-size: clamp(20px, 3vw, 24px); flex-shrink: 0; }
+.hack-title { font-family:'Space Grotesk',sans-serif; font-size: clamp(14px, 1.6vw, 15px); font-weight:600; color:var(--text); }
+.hack-sub { font-size: clamp(12px, 1.3vw, 13px); color:var(--accent); font-weight:500; margin-top:2px; }
+.hack-desc { font-size: clamp(12px, 1.3vw, 13px); color:var(--text-muted); margin-top:6px; line-height:1.55; }
+
+/* ── CONTACT ── */
+.contact-box {
+  background: var(--terminal);
+  border: 1px solid rgba(44,74,138,0.25);
+  border-radius: 18px;
+  padding: clamp(28px, 5vh, 48px) clamp(20px, 5vw, 40px);
+  text-align: center;
+}
+.contact-box h2 {
+  font-size: clamp(22px, 4vw, 30px);
+  color: #fff;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+.contact-box p {
+  font-size: clamp(13px, 1.5vw, 15px);
+  color: rgba(255,255,255,0.55);
+  max-width: min(380px, 100%);
+  margin: 0 auto 28px;
+}
+.contact-links {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: clamp(8px, 1.2vh, 11px) clamp(12px, 2vw, 18px);
+  border-radius: 10px;
+  font-size: clamp(12px, 1.3vw, 13px);
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.06);
+  transition: background 0.2s, border-color 0.2s;
+  touch-action: manipulation;
+}
+.contact-link:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); }
+.contact-link.primary { background: var(--accent); border-color: transparent; color: #fff; }
+.contact-link.primary:hover { background: var(--accent-dk); }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: clamp(20px, 3vh, 30px) clamp(16px, 4vw, 40px) clamp(24px, 4vh, 40px);
+  color: var(--steel);
+  font-size: clamp(11px, 1.2vw, 12px);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════ */
+
+/* Large desktop: 2-column project grid */
+@media (min-width: 860px) {
+  .proj-grid { grid-template-columns: repeat(2, 1fr); }
+  .proj-card.featured { grid-column: 1 / -1; }
+  .proj-card:nth-child(2) { grid-column: 1 / -1; }
+}
+
+/* Tablet landscape (768–1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+  .hero { padding: 90px 32px 56px; }
+  section { padding: 56px 32px; }
+}
+
+/* Tablet portrait (540–767px) */
+@media (max-width: 767px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .proj-grid { grid-template-columns: 1fr; }
+  .lang-grid { grid-template-columns: 1fr; }
+  .exp-right { text-align: left; }
+  .contact-box { padding: 28px 18px; }
+}
+
+/* Mobile (≤539px) */
+@media (max-width: 539px) {
+  nav { padding: 12px 16px; }
+  .nav-links { display: none; flex-direction: column; gap: 0; position: fixed; top: 53px; left: 0; right: 0; background: rgba(248,249,251,0.98); border-bottom: 1px solid var(--border); padding: 8px 0; z-index: 199; }
+  .nav-links.open { display: flex; }
+  .nav-links li a { display: block; padding: 12px 20px; font-size: 14px; border-bottom: 1px solid var(--border); }
+  .nav-links li:last-child a { border-bottom: none; }
+  .nav-toggle { display: flex; }
+  .hero { padding: 80px 16px 40px; min-height: 100svh; }
+  .hero h1 { font-size: clamp(28px, 9vw, 42px); }
+  .hero-desc { font-size: 14px; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; text-align: center; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  section { padding: 40px 16px; }
+  .exp-header { flex-direction: column; gap: 6px; }
+  .exp-right { text-align: left; }
+  .contact-links { flex-direction: column; align-items: stretch; }
+  .contact-link { justify-content: center; }
+  .role-strip { gap: 6px; }
+  .role-pill { font-size: 10px; padding: 3px 9px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">GM</div>
+  <button class="nav-toggle" onclick="this.classList.toggle('open'); document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/gowthammani20" target="_blank" rel="noopener">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/gowtham-mani-r-97650b28a" target="_blank" rel="noopener">LinkedIn</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Open to full-time roles &amp; collaborations
+    </div>
+    <h1>Gowtham Mani R</h1>
+
+    <!-- Role identity strip -->
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--accent);background:rgba(44,74,138,0.10);border:1px solid rgba(44,74,138,0.22);padding:4px 12px;border-radius:20px;">🤖 Agentic AI Engineer</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:20px;">📊 Data Intelligence</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:20px;">🔍 Data Analyst</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:20px;">🧠 ML Engineer</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:20px;">🔬 Data Science Enthusiast</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:20px;">📈 Power BI &amp; Tableau</span>
+    </div>
+
+    <p class="hero-desc">
+      Building intelligent systems across the full AI stack — from multi-agent architectures and RAG pipelines to ML models, ETL pipelines, and enterprise BI dashboards. Proven across 4+ internships spanning Agentic AI, Machine Learning, Data Analytics, and Cloud Computing.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:gowthammani1105@gmail.com" class="btn-primary">Get in touch</a>
+      <a href="#projects" class="btn-ghost">View projects</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-val">6+</div>
+        <div class="stat-lbl">Internships</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">5+</div>
+        <div class="stat-lbl">AI Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">95%</div>
+        <div class="stat-lbl">ML Accuracy</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">10+</div>
+        <div class="stat-lbl">Certs</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work history</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">PLM Indishtech Pvt. Ltd.</div>
+          <div class="exp-role">Digital Twin &amp; Industrial AI Intern</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;">
+            <span class="badge badge-done">✓ Completed</span>
+            <span class="badge badge-stipend">💼 Stipend Eligible</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="exp-date">Jul 2026 – Sep 2026</div>
+          <div style="font-size:11px;color:var(--steel);margin-top:3px;">Bangalore, Onsite · 3 months</div>
+        </div>
+      </div>
+      <p class="exp-desc">Worked on the <strong style="color:var(--text);font-weight:500;">Emirates Steel Industries Co. PJSC</strong> client project within the Siemens Industrial AI developer environment. Built and configured Node-RED flows for industrial data integration, and managed Asset &amp; Aspect modelling, endpoint handling, and IDL (Interface Definition Language) configurations.</p>
+      <p class="exp-desc" style="margin-top:10px;">Designed and deployed agentic AI components including agent &amp; sub-agent architectures, skill definitions, LLM parameter tuning, and Knowledge Base setup. Implemented enterprise integrations via REST APIs, Custom Connectors, Power Automate &amp; MCP with Entra ID, OAuth 2.0, RBAC, and DLP security frameworks.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;">
+        <span class="exp-tag">Node-RED</span>
+        <span class="exp-tag">Asset &amp; Aspect Management</span>
+        <span class="exp-tag">IDL Handling</span>
+        <span class="exp-tag">Agent &amp; Sub-Agent</span>
+        <span class="exp-tag">Knowledge Base</span>
+        <span class="exp-tag">LLM &amp; Parameters</span>
+        <span class="exp-tag">Endpoint Handling</span>
+        <span class="exp-tag">Copilot Studio</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">Infosys Springboard</div>
+          <div class="exp-role">Data Visualization Intern</div>
+        </div>
+        <div style="text-align:right">
+          <div class="exp-date">Dec 2025 – Mar 2026</div>
+          <div style="font-size:11px;color:var(--steel);margin-top:3px;">Remote</div>
+        </div>
+      </div>
+      <p class="exp-desc">Developed 5+ Power BI (DAX) &amp; Tableau dashboards across 500+ constituencies including the Electviz project — election data visualization covering all Tamil Nadu and Odisha constituencies with winner details and model views. Engineered ETL pipelines that improved reporting accuracy by 30%.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">Kevell Global Solutions</div>
+          <div class="exp-role">Machine Learning Intern</div>
+        </div>
+        <div style="text-align:right">
+          <div class="exp-date">Jul 2025 – Aug 2025</div>
+          <div style="font-size:11px;color:var(--steel);margin-top:3px;">Madurai, Onsite</div>
+        </div>
+      </div>
+      <p class="exp-desc">Built and evaluated regression and classification models using Scikit-learn. Achieved 95%+ data accuracy through preprocessing, feature engineering, and cross-validation.</p>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-left">
+          <div class="exp-company">AICTE – EduSkills Virtual Internship</div>
+          <div class="exp-role">Google AI-ML Intern &nbsp;·&nbsp; Supported by Google for Developers</div>
+          <div class="badge-row">
+            <span class="badge badge-done">✓ Completed</span>
+            <span class="badge" style="background:rgba(66,133,244,0.08);border:1px solid rgba(66,133,244,0.25);color:#2563c9;">🔷 Google for Developers</span>
+            <span class="badge" style="background:rgba(44,74,138,0.08);border:1px solid rgba(44,74,138,0.20);color:var(--accent);">AICTE · National Internship Portal</span>
+          </div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-date">Apr 2026 – Jun 2026</div>
+          <div class="exp-location">Remote · 8 Weeks · 2026</div>
+        </div>
+      </div>
+      <p class="exp-desc">Selected for the 8-week <strong style="color:var(--text);font-weight:500;">AICTE–EduSkills Google AI-ML Virtual Internship Program</strong> under Google for Developers. Completed a structured week-wise curriculum covering TensorFlow, neural networks, object detection, image classification, and on-device ML with TensorFlow Lite and Model Maker. Built convolutional neural networks, custom object-detection models, product image search features, and image classification apps with backend integration.</p>
+      <div class="exp-tags">
+        <span class="exp-tag">TensorFlow</span>
+        <span class="exp-tag">Neural Networks</span>
+        <span class="exp-tag">Object Detection</span>
+        <span class="exp-tag">TensorFlow Lite</span>
+        <span class="exp-tag">Model Maker</span>
+        <span class="exp-tag">Image Classification</span>
+        <span class="exp-tag">CNN</span>
+        <span class="exp-tag">Google AI-ML</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-left">
+          <div class="exp-company">AICTE – EduSkills Virtual Internship</div>
+          <div class="exp-role">Siemens Data Science Master Intern &nbsp;·&nbsp; Supported by Siemens</div>
+          <div class="badge-row">
+            <span class="badge badge-done">✓ Completed</span>
+            <span class="badge" style="background:rgba(0,145,122,0.08);border:1px solid rgba(0,145,122,0.25);color:#00796b;">⚙ Siemens · RapidMiner</span>
+            <span class="badge" style="background:rgba(44,74,138,0.08);border:1px solid rgba(44,74,138,0.20);color:var(--accent);">AICTE · National Internship Portal</span>
+          </div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-date">Jan 2026 – Mar 2026</div>
+          <div class="exp-location">Remote · 10 Weeks · 2026</div>
+        </div>
+      </div>
+      <p class="exp-desc">Selected for the 10-week <strong style="color:var(--text);font-weight:500;">AICTE–EduSkills Siemens Data Science Master Virtual Internship</strong>. Completed a comprehensive curriculum on the RapidMiner platform covering AI use case identification, data engineering, machine learning (classification, clustering, regression, time series), advanced data preparation, model deployment, real-time scoring, and platform administration including RapidMiner AI Hub setup, security, job scheduling, and enterprise-level operations.</p>
+      <div class="exp-tags">
+        <span class="exp-tag">RapidMiner</span>
+        <span class="exp-tag">Data Engineering</span>
+        <span class="exp-tag">Machine Learning</span>
+        <span class="exp-tag">Classification</span>
+        <span class="exp-tag">Regression</span>
+        <span class="exp-tag">Time Series</span>
+        <span class="exp-tag">Model Deployment</span>
+        <span class="exp-tag">Platform Administration</span>
+        <span class="exp-tag">Siemens AI Hub</span>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company">SmartBridge / NASSCOM</div>
+          <div class="exp-role">Cloud Computing Intern</div>
+          <div style="margin-top:7px;">
+            <span class="badge badge-goi">🏛 ₹4,000 Government of India Incentive</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div class="exp-date">2024</div>
+          <div style="font-size:11px;color:var(--steel);margin-top:3px;">Remote</div>
+        </div>
+      </div>
+      <p class="exp-desc">Completed cloud computing internship under NASSCOM's Skill Prime initiative. Recognised with a <strong style="color:var(--text);font-weight:500;">₹4,000 Government of India (GOI) incentive</strong> for successful program completion — awarded to top performers under the NASSCOM Skill Prime scheme.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">What I've built</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="proj-grid">
+
+    <div class="proj-card featured">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">🤖</div>
+        <span class="proj-featured-badge">Featured</span>
+      </div>
+      <div class="proj-title">Agentic AI — Copilot Studio + Siemens Insights Hub</div>
+      <p class="proj-desc">Architected a multi-agent AI system in Copilot Studio for OEE monitoring with RAG-based retrieval, Human-in-the-Loop escalation, security layers (Entra ID, RBAC), and observability pipelines integrated with Siemens Insights Hub IIoT.</p>
+      <div class="tag-row">
+        <span class="tag">Copilot Studio</span>
+        <span class="tag">RAG</span>
+        <span class="tag">Multi-Agent</span>
+        <span class="tag">Power Automate</span>
+        <span class="tag">IIoT</span>
+        <span class="tag">OEE</span>
+      </div>
+    </div>
+
+    <div class="proj-card" style="border-color:rgba(59,130,246,0.22);background:rgba(59,130,246,0.03);">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">🤖</div>
+        <a href="https://agentic-ai-assistant11-bzrrrjn2i3y5xu2smnb6h8.streamlit.app/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--accent);background:rgba(59,130,246,0.10);border:1px solid rgba(59,130,246,0.25);padding:3px 10px;border-radius:20px;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(59,130,246,0.18)'" onmouseout="this.style.background='rgba(59,130,246,0.10)'">↗ Live Demo</a>
+      </div>
+      <div class="proj-title">Personal Assistant Agent</div>
+      <p class="proj-desc">A deployed agentic AI assistant built with LangGraph for stateful multi-step reasoning and LangChain for tool orchestration. Uses Groq as the LLM backbone for fast inference. Observability powered by LangSmith. Features a Streamlit UI with real-time interaction, HTTP integrations via httpx, and environment-safe config using python-dotenv.</p>
+      <div class="tag-row">
+        <span class="tag">LangGraph</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">LangSmith</span>
+        <span class="tag">Groq (LLM)</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Python</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">httpx</span>
+        <span class="tag">python-dotenv</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">🏢</div>
+      </div>
+      <div class="proj-title">Enterprise IT Helpdesk — Multi-Agent AI System</div>
+      <p class="proj-desc">Built a multi-agent IT helpdesk system using Copilot Studio with agent &amp; sub-agent flows, Power Apps front-end, and Power Automate for workflow automation. Integrated REST APIs and Custom Connectors for enterprise system connectivity, with RAG-based knowledge retrieval for accurate, context-aware ticket resolution.</p>
+      <div class="tag-row">
+        <span class="tag">Copilot Studio</span>
+        <span class="tag">Power Apps</span>
+        <span class="tag">Power Automate</span>
+        <span class="tag">Agent Flow</span>
+        <span class="tag">REST API</span>
+        <span class="tag">Custom Connector</span>
+        <span class="tag">RAG</span>
+        <span class="tag">Multi-Agent</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">🏥</div>
+      </div>
+      <div class="proj-title">Hospital Patient Readmission Prediction</div>
+      <p class="proj-desc">End-to-end ML pipeline on UCI 130-US Hospitals dataset with SMOTE balancing and ICD-9 encoding. Achieved ~70% ROC-AUC across XGBoost, LightGBM, and CatBoost.</p>
+      <div class="tag-row">
+        <span class="tag">XGBoost</span>
+        <span class="tag">LightGBM</span>
+        <span class="tag">SMOTE</span>
+        <span class="tag">Feature Engineering</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">📄</div>
+      </div>
+      <div class="proj-title">ATS Resume Optimizer</div>
+      <p class="proj-desc">LangGraph + Claude API tool that analyzes resumes against job descriptions and suggests targeted improvements for ATS compatibility.</p>
+      <div class="tag-row">
+        <span class="tag">LangGraph</span>
+        <span class="tag">Claude API</span>
+        <span class="tag">RAG</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">🗳️</div>
+      </div>
+      <div class="proj-title">Electviz — Election Data Visualization</div>
+      <p class="proj-desc">Collected and processed election candidate and winner data for all constituencies across Tamil Nadu and Odisha. Built comprehensive Power BI dashboards with interactive visualizations and model views to surface insights on election outcomes and patterns.</p>
+      <div class="tag-row">
+        <span class="tag">Power BI</span>
+        <span class="tag">DAX</span>
+        <span class="tag">Data Collection</span>
+        <span class="tag">ETL</span>
+        <span class="tag">Model View</span>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon-wrap">🌱</div>
+      </div>
+      <div class="proj-title">Crop Yield Prediction &amp; Optimization</div>
+      <p class="proj-desc">GenAI-powered crop recommendation system using Gemini API in a React frontend, combining ML prediction with conversational AI guidance for farmers. Built for Smart India Hackathon (SIH).</p>
+      <div class="tag-row">
+        <span class="tag">Gemini API</span>
+        <span class="tag">React</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">SIH</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I work with</div>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <div class="skill-group-name">Agentic AI &amp; Copilot Studio</div>
+      <div class="skill-chips">
+        <span class="chip hi">Microsoft Copilot Studio</span>
+        <span class="chip hi">Agent Flows</span>
+        <span class="chip hi">Orchestration</span>
+        <span class="chip hi">RAG</span>
+        <span class="chip hi">LLM</span>
+        <span class="chip hi">Sub-Agent</span>
+        <span class="chip hi">Multi-Agent Architecture</span>
+        <span class="chip hi">LangGraph</span>
+        <span class="chip hi">LangChain</span>
+        <span class="chip hi">N8n</span>
+        <span class="chip">Human-in-the-Loop</span>
+        <span class="chip">Prompt Engineering</span>
+        <span class="chip">LLM Optimization</span>
+        <span class="chip">Observability</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-name">Enterprise &amp; Security</div>
+      <div class="skill-chips">
+        <span class="chip hi">REST APIs</span>
+        <span class="chip hi">Custom Connectors</span>
+        <span class="chip hi">Power Automate</span>
+        <span class="chip">Microsoft Entra ID</span>
+        <span class="chip">OAuth 2.0</span>
+        <span class="chip">RBAC</span>
+        <span class="chip">MCP</span>
+        <span class="chip">Teamcenter PLM</span>
+        <span class="chip">Siemens Insights Hub</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-name">Data Science &amp; ML</div>
+      <div class="skill-chips">
+        <span class="chip hi">Python</span>
+        <span class="chip hi">Scikit-learn</span>
+        <span class="chip">Pandas</span>
+        <span class="chip">NumPy</span>
+        <span class="chip">XGBoost</span>
+        <span class="chip">Feature Engineering</span>
+        <span class="chip">ETL Pipelines</span>
+        <span class="chip">SMOTE</span>
+        <span class="chip">Gemini API</span>
+        <span class="chip">Claude API</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-group-name">BI &amp; Visualization</div>
+      <div class="skill-chips">
+        <span class="chip hi">Power BI (DAX)</span>
+        <span class="chip hi">Tableau</span>
+        <span class="chip">MySQL</span>
+        <span class="chip">Excel Advanced</span>
+        <span class="chip">Streamlit</span>
+        <span class="chip">Matplotlib</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTS & EDUCATION -->
+<section>
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title">Education &amp; Certifications</h2>
+
+  <div class="cert-item" style="margin-bottom:24px;background:rgba(59,130,246,0.06);border-color:rgba(59,130,246,0.2);">
+    <div class="cert-icon">🎓</div>
+    <div>
+      <div class="cert-name">B.Tech in Artificial Intelligence &amp; Data Science</div>
+      <div class="cert-org">SSM Institute of Engineering and Technology, Dindigul · 2023 – 2027 (Pursuing)</div>
+    </div>
+  </div>
+
+  <!-- 2024 -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;margin-top:8px;">
+    <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;">2024</div>
+    <div style="flex:1;height:1px;background:var(--border);"></div>
+  </div>
+  <div class="cert-row" style="margin-bottom:20px;">
+    <div class="cert-item">
+      <div class="cert-icon">🤖</div>
+      <div>
+        <div class="cert-name">Introduction to Artificial Intelligence</div>
+        <div class="cert-org">Infosys Springboard · October 2024</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">✍️</div>
+      <div>
+        <div class="cert-name">Prompt Engineering</div>
+        <div class="cert-org">Infosys Springboard · November 2024</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">⚙️</div>
+      <div>
+        <div class="cert-name">AI-first Software Engineering</div>
+        <div class="cert-org">Infosys Springboard · November 2024</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">🧠</div>
+      <div>
+        <div class="cert-name">OpenAI GPT-3 for Developers</div>
+        <div class="cert-org">Infosys Springboard · November 2024</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2025 -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;">2025</div>
+    <div style="flex:1;height:1px;background:var(--border);"></div>
+  </div>
+  <div class="cert-row" style="margin-bottom:20px;">
+    <div class="cert-item">
+      <div class="cert-icon">🤖</div>
+      <div>
+        <div class="cert-name">Machine Learning Foundation Certification</div>
+        <div class="cert-org">Infosys Springboard · May 2025 &nbsp;·&nbsp; <span style="color:#8B6400;font-weight:500;">Certificate of Achievement</span></div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">📊</div>
+      <div>
+        <div class="cert-name">Data Science</div>
+        <div class="cert-org">Infosys Springboard · June 2025</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">📈</div>
+      <div>
+        <div class="cert-name">Hands-On Data Visualization with Microsoft Power BI</div>
+        <div class="cert-org">Infosys Springboard · June 2025</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">TechA Data Analytics using Power BI — Foundation Certification</div>
+        <div class="cert-org">Infosys Springboard · October 2025 &nbsp;·&nbsp; <span style="color:#8B6400;font-weight:500;">Certificate of Achievement</span></div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">☁️</div>
+      <div>
+        <div class="cert-name">Introduction to Cloud Computing</div>
+        <div class="cert-org">Infosys Springboard · October 2025</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">☁️</div>
+      <div>
+        <div class="cert-name">Cloud Computing</div>
+        <div class="cert-org">SmartBridge / NASSCOM · 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2026 -->
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+    <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;">2026</div>
+    <div style="flex:1;height:1px;background:var(--border);"></div>
+  </div>
+  <div class="cert-row">
+    <div class="cert-item">
+      <div class="cert-icon">⚙️</div>
+      <div>
+        <div class="cert-name">Siemens Data Science Master — Virtual Internship</div>
+        <div class="cert-org">AICTE – EduSkills · January – March 2026 · 10 Weeks</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-icon">🔷</div>
+      <div>
+        <div class="cert-name">Google AI-ML — Virtual Internship</div>
+        <div class="cert-org">AICTE – EduSkills · April – June 2026 · 8 Weeks</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LANGUAGES -->
+<section>
+  <div class="section-label">Communication</div>
+  <h2 class="section-title">Languages</h2>
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;">
+    <div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);border-radius:14px;padding:22px 20px;display:flex;align-items:center;gap:14px;">
+      <div style="font-size:28px;">🇮🇳</div>
+      <div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--text);">Tamil</div>
+        <div style="font-size:12px;color:var(--steel);margin-top:3px;">Native proficiency</div>
+      </div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 20px;display:flex;align-items:center;gap:14px;">
+      <div style="font-size:28px;">🇬🇧</div>
+      <div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;color:var(--text);">English</div>
+        <div style="font-size:12px;color:var(--steel);margin-top:3px;">Professional working proficiency</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HACKATHONS & ACTIVITIES -->
+<section>
+  <div class="section-label">Competitions &amp; events</div>
+  <h2 class="section-title">Hackathons &amp; Activities</h2>
+  <div style="display:flex;flex-direction:column;gap:12px;">
+
+    <div class="hack-card-hi">
+      <div style="font-size:24px;flex-shrink:0;">🏆</div>
+      <div>
+        <div class="hack-title">Smart India Hackathon (SIH)</div>
+        <div class="hack-sub">Participant</div>
+        <div class="hack-desc">Built a crop yield prediction and optimization system using GenAI — combining ML models with Gemini API for intelligent crop recommendation.</div>
+      </div>
+    </div>
+
+    <div class="hack-card">
+      <div style="font-size:24px;flex-shrink:0;">⚡</div>
+      <div>
+        <div class="hack-title">Gen AI Hackathon — NASSCOM Skill Prime</div>
+        <div class="hack-sub">Participant</div>
+        <div class="hack-desc">Participated in a generative AI-focused hackathon organised by NASSCOM Skill Prime, building AI-powered solutions under competition conditions.</div>
+      </div>
+    </div>
+
+    <div class="hack-card">
+      <div style="font-size:24px;flex-shrink:0;">🎓</div>
+      <div>
+        <div class="hack-title">AI Workshop — Thiran, Eswar College</div>
+        <div class="hack-sub">Attendee · February 2025</div>
+        <div class="hack-desc">Attended a hands-on AI workshop at Eswar College of Engineering, engaging with practical applications of artificial intelligence and emerging tools.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <h2>Let's build something</h2>
+    <p>Open to internships, full-time AI engineering roles, and project collaborations.</p>
+    <div class="contact-links">
+      <a href="mailto:gowthammani1105@gmail.com" class="contact-link primary">✉ gowthammani1105@gmail.com</a>
+      <a href="https://www.linkedin.com/in/gowtham-mani-r-97650b28a" target="_blank" rel="noopener" class="contact-link">in LinkedIn</a>
+      <a href="https://github.com/gowthammani20" target="_blank" rel="noopener" class="contact-link">⌥ GitHub</a>
+      <a href="tel:+918925217656" class="contact-link">📞 +91 89252 17656</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built by Gowtham Mani R · September 2026
+</footer>
+
+</body>
+</html>
